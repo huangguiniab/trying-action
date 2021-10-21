@@ -5,8 +5,9 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - name: 安装必要依赖，准备环境
-        run: sudo apt update
-        run: sudo apt install qemu-user-static debootstrap -y
+        run: |
+             sudo apt update
+             sudo apt install qemu-user-static debootstrap -y
       - name: 开始构建基本系统:ARM64
         run: sudo debootstrap --arch aarch64 buster arm64/
       - name: 清理文件
