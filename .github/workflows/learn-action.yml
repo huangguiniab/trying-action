@@ -9,6 +9,6 @@ jobs:
              sudo apt update
              sudo apt install qemu-user-static debootstrap -y
       - name: 开始构建基本系统:ARM64
-        run: sudo debootstrap --arch aarch64 buster arm64/
+        run: sudo debootstrap --arch arm64 buster arm64/
       - name: 清理文件
         run: sudo rm -rf arm64/
