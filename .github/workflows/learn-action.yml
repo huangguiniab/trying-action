@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - run: echo Hello world !
-      - name: Run command.
+      - name: 运行命令.
         run: echo 1111111111
       - run: pwd
       - run: ls -la
