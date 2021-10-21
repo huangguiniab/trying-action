@@ -1,13 +1,10 @@
 name: learn-action
 on: [push]
 jobs:
-  check-bats-version:
+  Explore-action:
     runs-on: ubuntu-18.04
     steps:
       - run: echo Hello world !
-      - name: 打印一句话
       - run: echo 1
-      - name: 打印所在目录
       - run: pwd
-      - name: 打印目录文件
       - run: ls -la
