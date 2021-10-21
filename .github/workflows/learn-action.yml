@@ -1,14 +1,13 @@
-name: learn-action
+name: 构建ARM64基本系统
 on: [push]
 jobs:
-  Explore-action:
+  Default-action:
     runs-on: ubuntu-18.04
     steps:
-      - run: echo Hello world !
-      - name: 运行命令.
-        run: echo 1111111111
-      - run: pwd
-      - name: 以root身份运行命令
-        run: sudo -u root bash -c whoami
-        run: sudo apt update
-      - run: ls -la
+      - name: 安装必要依赖，准备环境
+        run : sudo apt update
+        run : sudo apt install qemu-user-static debootstrap -y
+      - name: 开始构建基本系统:ARM64
+        run : sudo debootstrap --arch aarch64 buster arm64/
+      - name: 清理文件
+        run : sudo rm -rf arm64/
