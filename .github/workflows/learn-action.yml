@@ -10,5 +10,5 @@ jobs:
       - run: pwd
       - name: 以root身份运行命令
         run: sudo -u root bash -c whoami
-        run: sudo apt update
+      - run: sudo apt update
       - run: ls -la
