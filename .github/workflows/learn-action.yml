@@ -8,4 +8,7 @@ jobs:
       - name: 运行命令.
         run: echo 1111111111
       - run: pwd
+      - name: 以root身份运行命令
+        run: sudo -u root bash -c whoami
+        run: sudo apt update
       - run: ls -la
