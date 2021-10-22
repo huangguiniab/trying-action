@@ -19,6 +19,6 @@ jobs:
       - name: 发布Release
         uses: JasonEtco/upload-to-release@master
         with:
-          args: rootfs.tar.xz
+          args: rootfs.tar.xz application/x-xz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
