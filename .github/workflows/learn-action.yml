@@ -13,7 +13,7 @@ jobs:
       - name: 打包文件
         run: |
              cd arm64/
-             sudo tar -cvJf ../rootfs.tar.xz .
+             sudo tar -cJf ../rootfs.tar.xz .
              cd ..
              sudo chmod 777 rootfs.tar.xz
       - name: 发布Release
