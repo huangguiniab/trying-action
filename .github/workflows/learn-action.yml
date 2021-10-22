@@ -17,7 +17,7 @@ jobs:
              cd ..
              sudo chmod 777 rootfs.tar.xz
       - name: 发布Release
-      - uses: ncipollo/release-action@v1.8.10
+        uses: ncipollo/release-action@v1.8.10
         with:
           artifacts: "rootfs.tar.xz"
           token: ${{ secrets.GITHUB_TOKEN }}
