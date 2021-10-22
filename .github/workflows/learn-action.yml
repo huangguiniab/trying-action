@@ -1,7 +1,10 @@
 name: 构建ARM64基本系统
-on: [push]
+on: 
+ push:
+  tags:
+      - "v*.*.*"
 jobs:
-  Default-action:
+  默认动作:
     runs-on: ubuntu-latest
     steps:
       - name: 安装必要依赖，准备环境
@@ -9,15 +12,15 @@ jobs:
              sudo apt update
              sudo apt install debian-archive-keyring qemu qemu-user-static binfmt-support debootstrap xz-utils -y
       - name: 开始构建基本系统:ARM64
-        run: sudo debootstrap --arch arm64 buster arm64/
+#        run: sudo debootstrap --arch arm64 buster arm64/
+         run: touch rootfs.tar.xz
       - name: 打包文件
         run: |
-             cd arm64/
-             sudo tar -cJf ../rootfs.tar.xz .
-             cd ..
+#             cd arm64/
+#             sudo tar -cJf ../rootfs.tar.xz .
+#             cd ..
              sudo chmod 777 rootfs.tar.xz
       - name: 发布Release
         uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
         with:
           files: rootfs.tar.xz
