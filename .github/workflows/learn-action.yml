@@ -2,7 +2,7 @@ name: 构建ARM64基本系统
 on: [push]
 jobs:
   Default-action:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-release
     steps:
       - name: 安装必要依赖，准备环境
         run: |
