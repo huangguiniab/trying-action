@@ -17,8 +17,8 @@ jobs:
              cd ..
              sudo chmod 777 rootfs.tar.xz
       - name: 发布Release
-        uses: JasonEtco/upload-to-release@master
+      - uses: ncipollo/release-action@v1.8.10
         with:
-          args: rootfs.tar.xz application/x-xz
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          artifacts: "rootfs.tar.xz"
+          token: ${{ secrets.GITHUB_TOKEN }}
+        
