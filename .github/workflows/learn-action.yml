@@ -1,7 +1,7 @@
 name: 构建ARM64基本系统
 on: [push] 
 jobs:
-  默认动作:
+  Default-action:
     runs-on: ubuntu-latest
     steps:
       - name: skip
