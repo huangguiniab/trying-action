@@ -4,15 +4,28 @@ jobs:
   Default-action:
     runs-on: ubuntu-latest
     steps:
-      - name: skip
-        run: touch rootfs.tar.xz
+      - name: 安装必要依赖，准备环境
+        run: |
+             sudo apt update
+             sudo apt install debian-archive-keyring qemu qemu-user-static binfmt-support debootstrap -y
+      - name: 开始构建基本系统:ARM64
+        run: sudo debootstrap --arch arm64 buster arm64/
+      - name: 开始构建基本系统:ARM32
+        run: sudo debootstrap --arch armhf buster armhf/
       - name: 打包文件
         run: |
-             sudo chmod 777 rootfs.tar.xz
-             echo success
-             echo "ReleaseVersion=0.1" >> $GITHUB_ENV
-             git clone https://github.com/huangguiniab/lwjgl
-             tar -cf libs.tar lwjgl/
+             cd arm64/
+             tar -cJf ../rootfs-arm64.tar.xz .
+             cd ..
+             cd armhf/
+             tar -cJf ../rootfs-armhf.tar.xz .
+             cd ..
+      - name: 获取当前发行版本号
+        run: |
+             git clone https://github.com/huangguiniab/trying-action
+             cd trying-action
+             echo $(cat RELEASE) >> $GITHUB_ENV
+             cd ..
       - name: 发布Release
         uses: marvinpinto/action-automatic-releases@latest
         with:
@@ -21,4 +34,5 @@ jobs:
           title: ${{ env.ReleaseVersion }}
           prerelease: false
           files: |
-            libs.tar
+            rootfs-arm64.tar.xz
+            rootfs-armhf.tar.xz
