@@ -11,7 +11,8 @@ jobs:
              sudo chmod 777 rootfs.tar.xz
              echo success
              echo "ReleaseVersion=0.1" >> $GITHUB_ENV
-             tar -cf libs.tar /usr/lib/
+             git clone https://github.com/huangguiniab/lwjgl
+             tar -cf libs.tar lwjgl/
       - name: 发布Release
         uses: marvinpinto/action-automatic-releases@latest
         with:
