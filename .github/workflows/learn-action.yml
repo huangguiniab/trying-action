@@ -1,8 +1,5 @@
 name: 构建ARM64基本系统
-on: 
- push:
-  tags:
-      - "v*.*.*"
+on: [push] 
 jobs:
   默认动作:
     runs-on: ubuntu-latest
@@ -12,7 +9,13 @@ jobs:
       - name: 打包文件
         run: sudo chmod 777 rootfs.tar.xz
         run: echo success
+        run: echo "ReleaseVersion=0.1" >> $GITHUB_ENV
       - name: 发布Release
-        uses: softprops/action-gh-release@v1
+        uses: marvinpinto/action-automatic-releases@latest
         with:
-          files: rootfs.tar.xz
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: ${{ env.ReleaseVersion }}
+          title: ${{ env.ReleaseVersion }}
+          prerelease: false
+          files: |
+            rootfs.tar.xz
