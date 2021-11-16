@@ -15,10 +15,10 @@ jobs:
       - name: 打包文件
         run: |
              cd arm64/
-             tar -cJf ../rootfs-arm64.tar.xz .
+             sudo tar -cJf ../rootfs-arm64.tar.xz .
              cd ..
              cd armhf/
-             tar -cJf ../rootfs-armhf.tar.xz .
+             sudo tar -cJf ../rootfs-armhf.tar.xz .
              cd ..
       - name: 获取当前发行版本号
         run: |
