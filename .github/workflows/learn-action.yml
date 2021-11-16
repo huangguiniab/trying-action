@@ -1,4 +1,4 @@
-name: 构建ARM64基本系统
+name: 构建系统镜像
 on: [push] 
 jobs:
   Default-action:
