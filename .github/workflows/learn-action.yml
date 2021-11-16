@@ -7,9 +7,10 @@ jobs:
       - name: skip
         run: touch rootfs.tar.xz
       - name: 打包文件
-        run: sudo chmod 777 rootfs.tar.xz
-        run: echo success
-        run: echo "ReleaseVersion=0.1" >> $GITHUB_ENV
+        run: |
+             sudo chmod 777 rootfs.tar.xz
+             echo success
+             echo "ReleaseVersion=0.1" >> $GITHUB_ENV
       - name: 发布Release
         uses: marvinpinto/action-automatic-releases@latest
         with:
