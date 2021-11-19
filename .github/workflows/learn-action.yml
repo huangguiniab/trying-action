@@ -1,5 +1,7 @@
 name: 构建系统镜像
-on: [push] 
+on:
+    tags:
+         - *.* 
 jobs:
   Default-action:
     runs-on: ubuntu-latest
